@@ -1,13 +1,16 @@
 ---
 layout: page
-title: Hello World!
-tagline: Supporting tagline
+title: Abe's Posts!
+tagline: Rambler, developer and gamer
 ---
 {% include JB/setup %}
 
-Read [Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
+[Github](http://github.com/abepetrillo)
+[LinkedIn](http://ie.linkedin.com/in/abrahampetrillo)
+[Facebook](http://facebook.com/abe.petrillo)
+[Twitter](http://twitter.com/AbePetrillo)
 
-Complete usage and documentation available at: [Jekyll Bootstrap](http://jekyllbootstrap.com)
+
 
 ## Update Author Attributes
 
