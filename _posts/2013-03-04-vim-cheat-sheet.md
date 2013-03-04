@@ -10,7 +10,7 @@ tags: [vim, commands, cheat sheet]
 `c`             => delete plus insert
 `d`             => delete
 `d$`            => delete to end of line
-`dt<character>` => delete until <character>
+`dt<character>` => delete until 'character'
 
 
 `diw`         => Delete inside word 
