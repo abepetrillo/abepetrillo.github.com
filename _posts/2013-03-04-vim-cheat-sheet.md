@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Vim cheat sheet
-tagline: Supporting taglineeseeeee
+tagline: completely logical use of the keyboard...
 description: "A list of commands and handy functions I come across while using vim"
 category: 
 tags: [vim, commands, cheat sheet]
