@@ -7,20 +7,25 @@ category:
 tags: [vim, commands, cheat sheet]
 ---
 {% include JB/setup %}
-{% include JB/helpers/view_helper %}
 
-`c`             => delete plus insert
+##Deleting/Replacing text
 
-`d`             => delete
+|              |                            |
+|--------------|----------------------------|
+|`c`             | delete plus insert       |
+|`d`             | delete                   |
+|`d$`            | delete to end of line    |
+|`dt<character>` | delete until 'character' |
+|`diw`           | Delete inside word       |
+|`di<symbol>`    | Delete inside symbol     |
+|`diw`||
+|`da`||
 
-`d$`            => delete to end of line
+##Navigation
 
-`dt<character>` => delete until 'character'
-
-`diw`         	=> Delete inside word 
-
-`di<symbol>`  	=> Delete inside symbol
-
-`diw`
-
-`da`
+|             |                             |
+|-------------|-----------------------------|
+|`_` | Beginning of line without insert     |
+|`I` | Beginning of line with insert        |
+|`$` | End of line without insert           |
+|`A` | End of line with insert              |
