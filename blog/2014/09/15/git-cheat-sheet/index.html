@@ -5,11 +5,23 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Mavericks - Yet Another Blog</title>
+  <title>Git Cheat Sheet - Yet Another Blog</title>
   <meta name="author" content="Abe Petrillo">
 
   
-  <meta name="description" content="Category: mavericks">
+  <meta name="description" content="Git commands that I always forget but find useful: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+# Recover a file:
+git checkout &lt;previous-commit-hash&gt; &lt;file_path& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +30,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://abepetrillo.github.io/blog/categories/mavericks">
+  <link rel="canonical" href="http://abepetrillo.github.io/blog/2014/09/15/git-cheat-sheet">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Yet Another Blog" type="application/atom+xml">
@@ -76,35 +88,113 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Mavericks</h1>
+    
+      <h1 class="entry-title">Git Cheat Sheet</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-15T22:21:48+01:00" pubdate data-updated="true">Sep 15<sup>th</sup>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>Git commands that I always forget but find useful:</p>
 
-  
-  <h2>2014</h2>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Recover a file:</span>
+</span><span class='line'>git checkout &lt;previous-commit-hash&gt; &lt;file_path&gt;<span class="sb">`</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Ignore changes to certain files:</span>
+</span><span class='line'>git update-index --assume-unchanged config/database.yml
+</span><span class='line'>
+</span><span class='line'><span class="c"># Take commit from another branch:</span>
+</span><span class='line'>git cherry-pick &lt;commit reference&gt;
+</span><span class='line'>
+</span><span class='line'><span class="c"># Delete multiple branches starting with some string:</span>
+</span><span class='line'>git branch -D <span class="sb">`</span>git <span class="k">for</span>-each-ref --format<span class="o">=</span><span class="s2">&quot;%(refname:short)&quot;</span> refs/heads/some_string<span class="se">\*</span><span class="sb">`</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<article>
-  
-<h1><a href="/blog/2014/09/15/resizing-images-in-mavericks/">Resizing Images in Mavericks</a></h1>
-<time datetime="2014-09-15T21:38:33+01:00" pubdate><span class='month'>Sep</span> <span class='day'>15</span> <span class='year'>2014</span></time>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/images/'>images</a>, <a class='category' href='/blog/categories/mavericks/'>mavericks</a></span>
-</footer>
-
-
-</article>
-
+<p>I tend to alias things so when on another machine it&rsquo;s handy!</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Abe Petrillo</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-15T22:21:48+01:00" pubdate data-updated="true">Sep 15<sup>th</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cheat-sheet/'>cheat sheet</a>, <a class='category' href='/blog/categories/git/'>git</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://abepetrillo.github.io/blog/2014/09/15/git-cheat-sheet/" data-via="AbePetrillo" data-counturl="http://abepetrillo.github.io/blog/2014/09/15/git-cheat-sheet/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/09/15/resizing-images-in-mavericks/" title="Previous Post: Resizing images in Mavericks">&laquo; Resizing images in Mavericks</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Git | Yet Another Blog]]></title>
+  <link href="http://abepetrillo.github.io/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://abepetrillo.github.io/"/>
+  <updated>2014-09-15T22:32:30+01:00</updated>
+  <id>http://abepetrillo.github.io/</id>
+  <author>
+    <name><![CDATA[Abe Petrillo]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Git Cheat Sheet]]></title>
+    <link href="http://abepetrillo.github.io/blog/2014/09/15/git-cheat-sheet/"/>
+    <updated>2014-09-15T22:21:48+01:00</updated>
+    <id>http://abepetrillo.github.io/blog/2014/09/15/git-cheat-sheet</id>
+    <content type="html"><![CDATA[<p>Git commands that I always forget but find useful:</p>
+
+<p>``` bash</p>
+
+<h1>Recover a file:</h1>
+
+<p>git checkout &lt;previous-commit-hash> &lt;file_path>`</p>
+
+<h1>Ignore changes to certain files:</h1>
+
+<p>git update-index &mdash;assume-unchanged config/database.yml</p>
+
+<h1>Take commit from another branch:</h1>
+
+<p>git cherry-pick <commit reference></p>
+
+<h1>Delete multiple branches starting with some string:</h1>
+
+<p>git branch -D <code>git for-each-ref --format="%(refname:short)" refs/heads/some_string\*</code>
+```</p>
+
+<p>I tend to alias things so when on another machine it&rsquo;s handy!</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -9,8 +9,19 @@
   <meta name="author" content="Abe Petrillo">
 
   
-  <meta name="description" content="After a search for batch resizing tools, which most require a bit of fiddling around with.
-I found a handy command line tool which comes with &hellip;">
+  <meta name="description" content="Git commands that I always forget but find useful: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+# Recover a file:
+git checkout &lt;previous-commit-hash&gt; &lt;file_path& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +95,69 @@ I found a handy command line tool which comes with &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/09/15/git-cheat-sheet/">Git Cheat Sheet</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-15T22:21:48+01:00" pubdate data-updated="true">Sep 15<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Git commands that I always forget but find useful:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Recover a file:</span>
+</span><span class='line'>git checkout &lt;previous-commit-hash&gt; &lt;file_path&gt;<span class="sb">`</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Ignore changes to certain files:</span>
+</span><span class='line'>git update-index --assume-unchanged config/database.yml
+</span><span class='line'>
+</span><span class='line'><span class="c"># Take commit from another branch:</span>
+</span><span class='line'>git cherry-pick &lt;commit reference&gt;
+</span><span class='line'>
+</span><span class='line'><span class="c"># Delete multiple branches starting with some string:</span>
+</span><span class='line'>git branch -D <span class="sb">`</span>git <span class="k">for</span>-each-ref --format<span class="o">=</span><span class="s2">&quot;%(refname:short)&quot;</span> refs/heads/some_string<span class="se">\*</span><span class="sb">`</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I tend to alias things so when on another machine it&rsquo;s handy!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/09/15/resizing-images-in-mavericks/">Resizing Images in Mavericks</a></h1>
     
     
@@ -137,6 +211,10 @@ For my needs, I passed <code>-Z</code> to keep the ratio, and a maximum height o
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/15/git-cheat-sheet/">Git Cheat Sheet</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/09/15/resizing-images-in-mavericks/">Resizing Images in Mavericks</a>
