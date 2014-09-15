@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Yet Another Blog]]></title>
-  <link href="http://abepetrillo.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Mavericks | Yet Another Blog]]></title>
+  <link href="http://abepetrillo.github.io/blog/categories/mavericks/atom.xml" rel="self"/>
   <link href="http://abepetrillo.github.io/"/>
   <updated>2014-09-15T22:07:27+01:00</updated>
   <id>http://abepetrillo.github.io/</id>
@@ -21,10 +21,9 @@
     <content type="html"><![CDATA[<p>After a search for batch resizing tools, which most require a bit of fiddling around with.
 I found a handy command line tool which comes with maverick, <a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/sips.1.html">sips</a>.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sips -Z 1024 *.jpg
-</span></code></pre></td></tr></table></div></figure>
-
+<p><code>bash
+sips -Z 1024 *.jpg
+</code></p>
 
 <p>If you run the above in a directory of pictures, it will resize all pictures in the current directory.
 For my needs, I passed <code>-Z</code> to keep the ratio, and a maximum height of 1024 pixels.</p>
