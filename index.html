@@ -20,8 +20,11 @@
 9
 10
 11
+12
+13
+14
 # Recover a file:
-git checkout &lt;previous-commit-hash&gt; &lt;file_path& &hellip;">
+git checkout &lt;previous-commit-hash&gt; &lt; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -131,6 +134,9 @@ git checkout &lt;previous-commit-hash&gt; &lt;file_path& &hellip;">
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Recover a file:</span>
 </span><span class='line'>git checkout &lt;previous-commit-hash&gt; &lt;file_path&gt;<span class="sb">`</span>
 </span><span class='line'>
@@ -142,6 +148,9 @@ git checkout &lt;previous-commit-hash&gt; &lt;file_path& &hellip;">
 </span><span class='line'>
 </span><span class='line'><span class="c"># Delete multiple branches starting with some string:</span>
 </span><span class='line'>git branch -D <span class="sb">`</span>git <span class="k">for</span>-each-ref --format<span class="o">=</span><span class="s2">&quot;%(refname:short)&quot;</span> refs/heads/some_string<span class="se">\*</span><span class="sb">`</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># List branches in order of which most recent commit</span>
+</span><span class='line'>git <span class="k">for</span>-each-ref --sort<span class="o">=</span>-committerdate refs/heads/
 </span></code></pre></td></tr></table></div></figure>
 
 

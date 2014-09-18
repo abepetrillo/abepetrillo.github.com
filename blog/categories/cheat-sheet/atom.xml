@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cheat Sheet | Yet Another Blog]]></title>
   <link href="http://abepetrillo.github.io/blog/categories/cheat-sheet/atom.xml" rel="self"/>
   <link href="http://abepetrillo.github.io/"/>
-  <updated>2014-09-15T22:32:30+01:00</updated>
+  <updated>2014-09-19T00:10:33+01:00</updated>
   <id>http://abepetrillo.github.io/</id>
   <author>
     <name><![CDATA[Abe Petrillo]]></name>
@@ -36,7 +36,11 @@
 
 <h1>Delete multiple branches starting with some string:</h1>
 
-<p>git branch -D <code>git for-each-ref --format="%(refname:short)" refs/heads/some_string\*</code>
+<p>git branch -D <code>git for-each-ref --format="%(refname:short)" refs/heads/some_string\*</code></p>
+
+<h1>List branches in order of which most recent commit</h1>
+
+<p>git for-each-ref &mdash;sort=-committerdate refs/heads/
 ```</p>
 
 <p>I tend to alias things so when on another machine it&rsquo;s handy!</p>
