@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Yet Another Blog</title>
+  <title>Using Lambdas With Let (in Rspec) - Yet Another Blog</title>
   <meta name="author" content="Abe Petrillo">
 
   
@@ -19,7 +19,7 @@ in our before :each blocks. Lazy loading on when it& &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://abepetrillo.github.io">
+  <link rel="canonical" href="http://abepetrillo.github.io/blog/2014/11/12/using-lambdas-with-let-in-rspec">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Yet Another Blog" type="application/atom+xml">
@@ -76,15 +76,12 @@ in our before :each blocks. Lazy loading on when it& &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/12/using-lambdas-with-let-in-rspec/">Using Lambdas With Let (in Rspec)</a></h1>
+      <h1 class="entry-title">Using Lambdas With Let (in Rspec)</h1>
     
     
       <p class="meta">
@@ -107,7 +104,7 @@ in our before :each blocks. Lazy loading on when it& &hellip;">
   </header>
 
 
-  <div class="entry-content"><p>As many of you already know, <code>let</code> has been a great improvement on declaring instance variables
+<div class="entry-content"><p>As many of you already know, <code>let</code> has been a great improvement on declaring instance variables
 in our <code>before :each</code> blocks. Lazy loading on when it&rsquo;s used while being kept in memory for the
 duration of the test. One way in which we use lets, for more complicated variable definitions, is to
 use let, and provide it with arguments using a lambda:</p>
@@ -160,91 +157,16 @@ use let, and provide it with arguments using a lambda:</p>
 </span></code></pre></td></tr></table></div></figure>
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/15/git-cheat-sheet/">Git Cheat Sheet</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Abe Petrillo</span></span>
 
-<time datetime="2014-09-15T17:21:48-04:00" pubdate data-updated="true">Sep 15<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Git commands that I always forget but find useful:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Recover a file:</span>
-</span><span class='line'>git checkout &lt;previous-commit-hash&gt; &lt;file_path&gt;<span class="sb">`</span>
-</span><span class='line'>
-</span><span class='line'><span class="c"># Ignore changes to certain files:</span>
-</span><span class='line'>git update-index --assume-unchanged config/database.yml
-</span><span class='line'>
-</span><span class='line'><span class="c"># Take commit from another branch:</span>
-</span><span class='line'>git cherry-pick &lt;commit reference&gt;
-</span><span class='line'>
-</span><span class='line'><span class="c"># Delete multiple branches starting with some string:</span>
-</span><span class='line'>git branch -D <span class="sb">`</span>git <span class="k">for</span>-each-ref --format<span class="o">=</span><span class="s2">&quot;%(refname:short)&quot;</span> refs/heads/some_string<span class="se">\*</span><span class="sb">`</span>
-</span><span class='line'>
-</span><span class='line'><span class="c"># List branches in order of which most recent commit</span>
-</span><span class='line'>git <span class="k">for</span>-each-ref --sort<span class="o">=</span>-committerdate refs/heads/
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I tend to alias things so when on another machine it&rsquo;s handy!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/15/resizing-images-in-mavericks/">Resizing Images in Mavericks</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -256,38 +178,40 @@ use let, and provide it with arguments using a lambda:</p>
   
 
 
-<time datetime="2014-09-15T16:38:33-04:00" pubdate data-updated="true">Sep 15<sup>th</sup>, 2014</time>
-        
-      </p>
+<time datetime="2014-11-12T19:36:57-05:00" pubdate data-updated="true">Nov 12<sup>th</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rspec/'>rspec</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>After a search for batch resizing tools, which most require a bit of fiddling around with.
-I found a handy command line tool which comes with maverick, <a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/sips.1.html">sips</a>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sips -Z 1024 *.jpg
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If you run the above in a directory of pictures, it will resize all pictures in the current directory.
-For my needs, I passed <code>-Z</code> to keep the ratio, and a maximum height of 1024 pixels.</p>
-
-<p>As always, make sure to keep the original in case you don&rsquo;t like the results!</p>
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://abepetrillo.github.io/blog/2014/11/12/using-lambdas-with-let-in-rspec/" data-via="AbePetrillo" data-counturl="http://abepetrillo.github.io/blog/2014/11/12/using-lambdas-with-let-in-rspec/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/09/15/git-cheat-sheet/" title="Previous Post: Git Cheat sheet">&laquo; Git Cheat sheet</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -312,7 +236,7 @@ For my needs, I passed <code>-Z</code> to keep the ratio, and a maximum height o
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/abepetrillo">@abepetrillo</a> on GitHub
@@ -344,6 +268,7 @@ For my needs, I passed <code>-Z</code> to keep the ratio, and a maximum height o
 
   
 </aside>
+
 
     </div>
   </div>

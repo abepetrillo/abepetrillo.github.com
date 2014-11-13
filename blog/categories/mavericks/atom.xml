@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mavericks | Yet Another Blog]]></title>
   <link href="http://abepetrillo.github.io/blog/categories/mavericks/atom.xml" rel="self"/>
   <link href="http://abepetrillo.github.io/"/>
-  <updated>2014-09-19T00:10:33+01:00</updated>
+  <updated>2014-11-12T20:07:34-05:00</updated>
   <id>http://abepetrillo.github.io/</id>
   <author>
     <name><![CDATA[Abe Petrillo]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Resizing Images in Mavericks]]></title>
     <link href="http://abepetrillo.github.io/blog/2014/09/15/resizing-images-in-mavericks/"/>
-    <updated>2014-09-15T21:38:33+01:00</updated>
+    <updated>2014-09-15T16:38:33-04:00</updated>
     <id>http://abepetrillo.github.io/blog/2014/09/15/resizing-images-in-mavericks</id>
     <content type="html"><![CDATA[<p>After a search for batch resizing tools, which most require a bit of fiddling around with.
 I found a handy command line tool which comes with maverick, <a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/sips.1.html">sips</a>.</p>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | Yet Another Blog]]></title>
+  <link href="http://abepetrillo.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://abepetrillo.github.io/"/>
+  <updated>2014-11-12T20:07:34-05:00</updated>
+  <id>http://abepetrillo.github.io/</id>
+  <author>
+    <name><![CDATA[Abe Petrillo]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Using Lambdas With Let (in Rspec)]]></title>
+    <link href="http://abepetrillo.github.io/blog/2014/11/12/using-lambdas-with-let-in-rspec/"/>
+    <updated>2014-11-12T19:36:57-05:00</updated>
+    <id>http://abepetrillo.github.io/blog/2014/11/12/using-lambdas-with-let-in-rspec</id>
+    <content type="html"><![CDATA[<p>As many of you already know, <code>let</code> has been a great improvement on declaring instance variables
+in our <code>before :each</code> blocks. Lazy loading on when it&rsquo;s used while being kept in memory for the
+duration of the test. One way in which we use lets, for more complicated variable definitions, is to
+use let, and provide it with arguments using a lambda:</p>
+
+<p>```ruby
+let(:user) {</p>
+
+<pre><code>-&gt;(name, email) {
+  double("user", user: email, email: email)
+}
+</code></pre>
+
+<p>  }
+```</p>
+
+<p>You can then easily setup users in your test:</p>
+
+<p>```ruby
+describe &lsquo;Given a user&rsquo; do
+  context &lsquo;with internal address&rsquo; do</p>
+
+<pre><code>it 'redirects to intranet' do
+  login_as user['Bob', 'bob@internal.com']
+  ...
+end
+</code></pre>
+
+<p>  end
+  context &lsquo;with external address&rsquo; do</p>
+
+<pre><code>let(:staff_user) { user['Bob', 'bob@internal.com'] }
+it 'redirects to external domain' do
+  login_as user['Pete', 'pete@gmail.com']
+  ...
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+]]></content>
+  </entry>
+  
+</feed>

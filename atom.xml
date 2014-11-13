@@ -4,7 +4,7 @@
   <title><![CDATA[Yet Another Blog]]></title>
   <link href="http://abepetrillo.github.io/atom.xml" rel="self"/>
   <link href="http://abepetrillo.github.io/"/>
-  <updated>2014-09-19T00:10:33+01:00</updated>
+  <updated>2014-11-12T20:07:34-05:00</updated>
   <id>http://abepetrillo.github.io/</id>
   <author>
     <name><![CDATA[Abe Petrillo]]></name>
@@ -14,9 +14,69 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Using Lambdas With Let (in Rspec)]]></title>
+    <link href="http://abepetrillo.github.io/blog/2014/11/12/using-lambdas-with-let-in-rspec/"/>
+    <updated>2014-11-12T19:36:57-05:00</updated>
+    <id>http://abepetrillo.github.io/blog/2014/11/12/using-lambdas-with-let-in-rspec</id>
+    <content type="html"><![CDATA[<p>As many of you already know, <code>let</code> has been a great improvement on declaring instance variables
+in our <code>before :each</code> blocks. Lazy loading on when it&rsquo;s used while being kept in memory for the
+duration of the test. One way in which we use lets, for more complicated variable definitions, is to
+use let, and provide it with arguments using a lambda:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="o">-&gt;</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">double</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="ss">user</span><span class="p">:</span> <span class="n">email</span><span class="p">,</span> <span class="ss">email</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can then easily setup users in your test:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="s1">&#39;Given a user&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">context</span> <span class="s1">&#39;with internal address&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;redirects to intranet&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">login_as</span> <span class="n">user</span><span class="o">[</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;bob@internal.com&#39;</span><span class="o">]</span>
+</span><span class='line'>      <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">context</span> <span class="s1">&#39;with external address&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">let</span><span class="p">(</span><span class="ss">:staff_user</span><span class="p">)</span> <span class="p">{</span> <span class="n">user</span><span class="o">[</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;bob@internal.com&#39;</span><span class="o">]</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;redirects to external domain&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">login_as</span> <span class="n">user</span><span class="o">[</span><span class="s1">&#39;Pete&#39;</span><span class="p">,</span> <span class="s1">&#39;pete@gmail.com&#39;</span><span class="o">]</span>
+</span><span class='line'>      <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Git Cheat Sheet]]></title>
     <link href="http://abepetrillo.github.io/blog/2014/09/15/git-cheat-sheet/"/>
-    <updated>2014-09-15T22:21:48+01:00</updated>
+    <updated>2014-09-15T17:21:48-04:00</updated>
     <id>http://abepetrillo.github.io/blog/2014/09/15/git-cheat-sheet</id>
     <content type="html"><![CDATA[<p>Git commands that I always forget but find useful:</p>
 
@@ -58,7 +118,7 @@
   <entry>
     <title type="html"><![CDATA[Resizing Images in Mavericks]]></title>
     <link href="http://abepetrillo.github.io/blog/2014/09/15/resizing-images-in-mavericks/"/>
-    <updated>2014-09-15T21:38:33+01:00</updated>
+    <updated>2014-09-15T16:38:33-04:00</updated>
     <id>http://abepetrillo.github.io/blog/2014/09/15/resizing-images-in-mavericks</id>
     <content type="html"><![CDATA[<p>After a search for batch resizing tools, which most require a bit of fiddling around with.
 I found a handy command line tool which comes with maverick, <a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/sips.1.html">sips</a>.</p>
