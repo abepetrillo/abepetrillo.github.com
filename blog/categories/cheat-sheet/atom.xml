@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cheat Sheet | Yet Another Blog]]></title>
   <link href="http://abepetrillo.github.io/blog/categories/cheat-sheet/atom.xml" rel="self"/>
   <link href="http://abepetrillo.github.io/"/>
-  <updated>2015-02-03T11:21:51-05:00</updated>
+  <updated>2015-02-03T15:48:06-05:00</updated>
   <id>http://abepetrillo.github.io/</id>
   <author>
     <name><![CDATA[Abe Petrillo]]></name>
@@ -20,28 +20,21 @@
     <id>http://abepetrillo.github.io/blog/2014/09/15/git-cheat-sheet</id>
     <content type="html"><![CDATA[<p>Git commands that I always forget but find useful:</p>
 
-<p>``` bash</p>
+<pre><code class="bash"># Recover a file:
+git checkout &lt;previous-commit-hash&gt; &lt;file_path&gt;`
 
-<h1>Recover a file:</h1>
+# Ignore changes to certain files:
+git update-index --assume-unchanged config/database.yml
 
-<p>git checkout &lt;previous-commit-hash> &lt;file_path>`</p>
+# Take commit from another branch:
+git cherry-pick &lt;commit reference&gt;
 
-<h1>Ignore changes to certain files:</h1>
+# Delete multiple branches starting with some string:
+git branch -D `git for-each-ref --format="%(refname:short)" refs/heads/some_string\*`
 
-<p>git update-index &mdash;assume-unchanged config/database.yml</p>
-
-<h1>Take commit from another branch:</h1>
-
-<p>git cherry-pick <commit reference></p>
-
-<h1>Delete multiple branches starting with some string:</h1>
-
-<p>git branch -D <code>git for-each-ref --format="%(refname:short)" refs/heads/some_string\*</code></p>
-
-<h1>List branches in order of which most recent commit</h1>
-
-<p>git for-each-ref &mdash;sort=-committerdate refs/heads/
-```</p>
+# List branches in order of which most recent commit
+git for-each-ref --sort=-committerdate refs/heads/
+</code></pre>
 
 <p>I tend to alias things so when on another machine it&rsquo;s handy!</p>
 ]]></content>

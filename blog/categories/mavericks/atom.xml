@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mavericks | Yet Another Blog]]></title>
   <link href="http://abepetrillo.github.io/blog/categories/mavericks/atom.xml" rel="self"/>
   <link href="http://abepetrillo.github.io/"/>
-  <updated>2015-02-03T11:21:51-05:00</updated>
+  <updated>2015-02-03T15:48:06-05:00</updated>
   <id>http://abepetrillo.github.io/</id>
   <author>
     <name><![CDATA[Abe Petrillo]]></name>
@@ -21,9 +21,8 @@
     <content type="html"><![CDATA[<p>After a search for batch resizing tools, which most require a bit of fiddling around with.
 I found a handy command line tool which comes with maverick, <a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/sips.1.html">sips</a>.</p>
 
-<p><code>bash
-sips -Z 1024 *.jpg
-</code></p>
+<pre><code class="bash">sips -Z 1024 *.jpg
+</code></pre>
 
 <p>If you run the above in a directory of pictures, it will resize all pictures in the current directory.
 For my needs, I passed <code>-Z</code> to keep the ratio, and a maximum height of 1024 pixels.</p>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Yet Another Blog]]></title>
   <link href="http://abepetrillo.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://abepetrillo.github.io/"/>
-  <updated>2015-02-03T11:21:51-05:00</updated>
+  <updated>2015-02-03T15:48:06-05:00</updated>
   <id>http://abepetrillo.github.io/</id>
   <author>
     <name><![CDATA[Abe Petrillo]]></name>
@@ -23,42 +23,31 @@ in our <code>before :each</code> blocks. Lazy loading on when it&rsquo;s used wh
 duration of the test. One way in which we use lets, for more complicated variable definitions, is to
 use let, and provide it with arguments using a lambda:</p>
 
-<p>```ruby
-let(:user) {</p>
-
-<pre><code>-&gt;(name, email) {
-  double("user", user: email, email: email)
-}
+<pre><code class="ruby">let(:user) {
+    -&gt;(name, email) {
+      double("user", user: email, email: email)
+    }
+  }
 </code></pre>
-
-<p>  }
-```</p>
 
 <p>You can then easily setup users in your test:</p>
 
-<p>```ruby
-describe &lsquo;Given a user&rsquo; do
-  context &lsquo;with internal address&rsquo; do</p>
-
-<pre><code>it 'redirects to intranet' do
-  login_as user['Bob', 'bob@internal.com']
-  ...
+<pre><code class="ruby">describe 'Given a user' do
+  context 'with internal address' do
+    it 'redirects to intranet' do
+      login_as user['Bob', 'bob@internal.com']
+      ...
+    end
+  end
+  context 'with external address' do
+    let(:staff_user) { user['Bob', 'bob@internal.com'] }
+    it 'redirects to external domain' do
+      login_as user['Pete', 'pete@gmail.com']
+      ...
+    end
+  end
 end
 </code></pre>
-
-<p>  end
-  context &lsquo;with external address&rsquo; do</p>
-
-<pre><code>let(:staff_user) { user['Bob', 'bob@internal.com'] }
-it 'redirects to external domain' do
-  login_as user['Pete', 'pete@gmail.com']
-  ...
-end
-</code></pre>
-
-<p>  end
-end
-```</p>
 ]]></content>
   </entry>
   
