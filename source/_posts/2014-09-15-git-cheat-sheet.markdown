@@ -9,9 +9,9 @@ categories: [git, cheat sheet]
 Git commands that I always forget but find useful:
 
 
-``` bash
+```bash
 # Recover a file:
-git checkout <previous-commit-hash> <file_path>`
+git checkout <previous-commit-hash> <file_path>
 
 # Ignore changes to certain files:
 git update-index --assume-unchanged config/database.yml
