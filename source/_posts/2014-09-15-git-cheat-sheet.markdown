@@ -22,6 +22,9 @@ git cherry-pick <commit reference>
 # Delete multiple branches starting with some string:
 git branch -D `git for-each-ref --format="%(refname:short)" refs/heads/some_string\*`
 
+# Delete all branches merged with master
+git branch --merged | egrep -v '(^\*|master)' | xargs git branch -d
+
 # List branches in order of which most recent commit
 git for-each-ref --sort=-committerdate refs/heads/
 ```
