@@ -3,6 +3,7 @@ layout: post
 title: "Using lambdas with let (in rspec)"
 date: 2014-11-12 19:36:57 -0500
 comments: true
+published: true
 categories: blog
 ---
 
