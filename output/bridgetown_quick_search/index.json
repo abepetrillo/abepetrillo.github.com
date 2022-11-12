@@ -1,0 +1,98 @@
+[
+        {
+          "id": "blog-2014-11-12-using-lambdas-with-let-in-rspec",
+          "title": "Using lambdas with let (in rspec)",
+          "collection": {
+            "label": "posts",
+            "name": "Posts"
+          },
+          "categories": "blog",
+          "tags": "",
+          "url": "/blog/2014/11/12/using-lambdas-with-let-in-rspec/",
+          "content": "As many of you already know, let has been a great improvement on declaring instance variables\nin our before :each blocks. Lazy loading on when it’s used while being kept in memory for the\nduration of the test. One way in which we use lets, for more complicated variable definitions, is to\nuse let, and provide it with arguments using a lambda:\n\nlet(:user) {\n    -&gt;(name, email) {\n      double(\"user\", user: email, email: email)\n    }\n  }\n\n\nYou can then easily setup users in your test:\n\ndescribe 'Given a user' do\n  context 'with internal address' do\n    it 'redirects to intranet' do\n      login_as user['Bob', 'bob@internal.com']\n      ...\n    end\n  end\n  context 'with external address' do\n    let(:staff_user) { user['Bob', 'bob@internal.com'] }\n    it 'redirects to external domain' do\n      login_as user['Pete', 'pete@gmail.com']\n      ...\n    end\n  end\nend"
+        },
+        {
+          "id": "blog-2014-09-15-git-cheat-sheet",
+          "title": "Git Cheat sheet",
+          "collection": {
+            "label": "posts",
+            "name": "Posts"
+          },
+          "categories": "blog",
+          "tags": "",
+          "url": "/blog/2014/09/15/git-cheat-sheet/",
+          "content": "Git commands that I always forget but find useful:\n\n# Recover a file:\ngit checkout &lt;previous-commit-hash&gt; &lt;file_path&gt;\n\n# Ignore changes to certain files:\ngit update-index --assume-unchanged config/database.yml\n\n# Take commit from another branch:\ngit cherry-pick &lt;commit reference&gt;\n\n# Delete multiple branches starting with some string:\ngit branch -D `git for-each-ref --format=\"%(refname:short)\" refs/heads/some_string\\*`\n\n# Delete all branches merged with master\ngit branch --merged | egrep -v '(^\\*|master)' | xargs git branch -d\n\n# List branches in order of which most recent commit\ngit for-each-ref --sort=-committerdate refs/heads/\n\n\nI tend to alias things so when on another machine it’s handy!"
+        },
+        {
+          "id": "blog-2014-09-15-resizing-images-in-mavericks",
+          "title": "Resizing images in Mavericks",
+          "collection": {
+            "label": "posts",
+            "name": "Posts"
+          },
+          "categories": "blog",
+          "tags": "",
+          "url": "/blog/2014/09/15/resizing-images-in-mavericks/",
+          "content": "After a search for batch resizing tools, which most require a bit of fiddling around with.\nI found a handy command line tool which comes with maverick, sips.\n\nsips -Z 1024 *.jpg\n\n\nIf you run the above in a directory of pictures, it will resize all pictures in the current directory.\nFor my needs, I passed -Z to keep the ratio, and a maximum height of 1024 pixels.\n\nAs always, make sure to keep the original in case you don’t like the results!"
+        },
+        {
+          "id": "404",
+          "title": "404 Not Found",
+          "collection": {
+            "label": "pages",
+            "name": "Posts"
+          },
+          "categories": "",
+          "tags": "",
+          "url": "/404",
+          "content": "Page not found :(\nThe requested page could not be found."
+        },
+        {
+          "id": "500",
+          "title": "500",
+          "collection": {
+            "label": "pages",
+            "name": "Posts"
+          },
+          "categories": "",
+          "tags": "",
+          "url": "/500",
+          "content": "500\n\nInternal Server Error :(\n\nThe requested page could not be delivered."
+        },
+        {
+          "id": "about",
+          "title": "About",
+          "collection": {
+            "label": "pages",
+            "name": "Posts"
+          },
+          "categories": "",
+          "tags": "",
+          "url": "/about/",
+          "content": "This is the basic Bridgetown site template. You can find out more info about customizing your Bridgetown site, as well as basic Bridgetown usage documentation at bridgetownrb.com\n\nYou can find the source code for Bridgetown at GitHub:\nbridgetownrb /\nbridgetown"
+        },
+        {
+          "id": "bridgetown_quick_search-index.json",
+          "title": "Index",
+          "collection": {
+            "label": "pages",
+            "name": "Posts"
+          },
+          "categories": "",
+          "tags": "",
+          "url": "/bridgetown_quick_search/index.json",
+          "content": "[\n  {%- assign looped = false %}\n  {%- assign documents = site.documents %}\n  {%- if site.content_engine == \"resource\" %}{% assign documents = site.resources %}{% endif %}\n  {%- for document in documents %}\n    {%- if document.title %}\n      {%- unless document.exclude_from_search or document.id == \"\" %}\n        {%- assign url = document.url %}\n        {%- if site.content_engine == \"resource\" %}{% assign url = document.relative_url %}{% endif %}\n        {%- if looped %},{% endif %}\n        {\n          \"id\": \"{{ url | slugify }}\",\n          \"title\": {{ document.title | jsonify }},\n          {%- if document.collection %}\n          \"collection\": {\n            \"label\": {{ document.collection.label | jsonify }},\n            \"name\": {{ document.collection.name | default: \"Posts\" | jsonify }}\n          },\n          {%- endif %}\n          \"categories\": {{ document.categories | join: \", \" | jsonify }},\n          \"tags\": {{ document.tags | join: \", \" | jsonify }},\n          \"url\": {{ url | jsonify }},\n          \"content\": {{ document.content | strip_html | replace_regex: \"[\\s/\\n]+\",\" \" | strip | jsonify }}\n        }\n        {%- assign looped = true %}\n      {%- endunless %}\n    {%- endif %}\n  {%- endfor %}\n  {%- for document in site.generated_pages %}\n    {%- if document.name contains \".md\" or document.name contains \".html\" %}\n      {%- if document.title %}\n        {%- unless document.exclude_from_search %}\n          {%- if looped %},{% endif %}\n          {\n            \"id\": \"{{ document.url | slugify }}\",\n            \"title\": {{ document.title | jsonify }},\n            \"categories\": {{ document.categories | join: \", \" | jsonify }},\n            \"tags\": {{ document.tags | join: \", \" | jsonify }},\n            \"url\": {{ document.url | jsonify }},\n            \"content\": {{ document.content | strip_html | replace_regex: \"[\\s/\\n]+\",\" \" | strip | jsonify }}\n          }\n        {%- endunless %}\n      {%- endif %}\n    {%- endif %}\n  {%- endfor %}\n]"
+        },
+        {
+          "id": "",
+          "title": "Abe Petrillo",
+          "collection": {
+            "label": "data",
+            "name": "Posts"
+          },
+          "categories": "",
+          "tags": "",
+          "url": "",
+          "content": ""
+        }
+]
