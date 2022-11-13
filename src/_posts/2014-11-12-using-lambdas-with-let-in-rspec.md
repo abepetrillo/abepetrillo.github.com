@@ -5,6 +5,7 @@ date: 2014-11-12 19:36:57 -0500
 comments: true
 published: true
 categories: blog
+author: abe
 ---
 
 As many of you already know, `let` has been a great improvement on declaring instance variables

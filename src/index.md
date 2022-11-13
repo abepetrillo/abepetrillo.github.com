@@ -3,12 +3,6 @@ layout: home
 exclude_from_search: true
 ---
 
-Welcome to my site!
-
-I write about topics that I care about and believe are important. I try to bring my authentic voice every time I set out to type, and I strive to share a viewpoint that gets you thinking and inspired to dig deeper.
-
-----
-{: .my-6}
 
 # Latest Articles
 {: .mb-5 .title .has-text-centered}

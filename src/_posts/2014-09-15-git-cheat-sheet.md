@@ -5,6 +5,7 @@ date: 2014-09-15 22:21:48 +0100
 comments: true
 published: true
 categories: blog
+author: abe
 ---
 
 Git commands that I always forget but find useful:
