@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Using Amazon SES with Rails | Abe Petrillo</title>
+
+<meta name="description" content="Abe Petrillo's blog. An empty space full of great intentions to share the things I learn." />
+
+<link rel="stylesheet" href="/_bridgetown/static/index.6SASKOOZ.css" />
+<script src="/_bridgetown/static/index.ZBMEYBC2.js" defer></script>
+<script type="module">let lastmod = 0
+function startReloadConnection() {
+  const evtSource = new EventSource("/_bridgetown/live_reload")
+  evtSource.onmessage = event => {
+    if (event.data == "reloaded!") {
+      location.reload()
+    } else {
+      const newmod = Number(event.data)
+      if (lastmod > 0 && newmod > 0 && lastmod < newmod) {
+        location.reload()
+      } else {
+        lastmod = newmod
+      }
+    }
+  }
+  evtSource.onerror = event => {
+    if (evtSource.readyState === 2) {
+      // reconnect with new object
+      evtSource.close()
+      console.warn("Live reload: attempting to reconnect in 3 seconds...")
+
+      setTimeout(() => startReloadConnection(), 3000)
+    }
+  }
+}
+setTimeout(() => {
+  startReloadConnection()
+}, 500)
+</script>
+
+  </head>
+  <body class="post ">
+    <nav class="navbar is-dark">
+  <div class="navbar-brand">
+    
+    <a class="navbar-item" href="/">
+      Abe Petrillo
+    </a>
+  
+    <div class="navbar-burger burger" data-target="top-navbar" onclick="this.classList.toggle('is-active');document.querySelector('#top-navbar').classList.toggle('is-active')">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div id="top-navbar" class="navbar-menu">
+    <div class="navbar-start">
+      
+    <a class="navbar-item" href="/">Home</a>
+    <a class="navbar-item" href="/posts">Articles</a>
+    <a class="navbar-item" href="/about">About</a>
+  
+    </div>
+
+    <div class="navbar-end">
+      
+    <div class="navbar-item search-item">
+      
+<bridgetown-search-form>
+  <input slot="input" type="search" class="input" placeholder="Search" />
+  <bridgetown-search-results theme=""></bridgetown-search-results>
+</bridgetown-search-form>
+
+    </div>
+    <a class="navbar-item is-hidden-desktop-only" href="https://twitter.com/abepetrillo" target="_blank">
+      <span class="icon"><i class="fa fa-twitter is-size-6"></i></span>
+      <span class="is-hidden-tablet">Twitter</span>
+    </a>
+        
+    </div>
+  </div>
+</nav>
+
+
+    <main>
+      <article class="h-entry">
+  <header class="hero is-dark is-medium is-bold has-text-centered">
+  <div>
+    <div class="hero-body">
+      <div class="container is-fluid">
+        <h1 class="p-name title is-2 is-spaced has-text-light">
+          Using Amazon SES with Rails
+        </h1>
+        
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <section class="section">
+    <div class="container">
+        <div class="mb-6 author has-text-centered p-author">
+          <img src="/images/abe.jpeg" alt="Abe Petrillo" class="avatar u-photo" />
+          by <a href="/authors/abe/" class="has-text-weight-bold u-url p-name">Abe Petrillo</a>
+          on September 26, 2016
+        </div>
+
+      <div class="content e-content">
+        <p>Like many developers, we made the decision to rely on a third party service to send our emails. We have been using SendGrid for a long time now, and have so far been letting the odd delay or two go because of the overall reliability. We are now working at a much larger scale, so not only do we need a more timely service, we also need to be able to load balance our traffic across a variety of providers to ensure we have a plan B if one of our providers goes down. This became a priority after the more recent outages experienced by SendGrid, and in our travels around the web we came across Amazon SES. There are some quirks getting this up and running, so we thought we’d share what we’ve learned here at Alphasights.</p>
+
+<h2 id="the-setup">The Setup</h2>
+<p>Amazon SES provides an SMTP endpoint, so we can rely on the regular ActionMailer setup, example as follows:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">smtp_settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">user_name: </span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SMTP_USER_NAME'</span><span class="p">],</span>
+    <span class="ss">password: </span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SMTP_PASSWORD'</span><span class="p">],</span>
+    <span class="ss">address: </span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SMTP_ADDRESS'</span><span class="p">],</span>
+    <span class="ss">domain:  </span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SMTP_DOMAIN'</span><span class="p">],</span>
+    <span class="ss">port: </span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SMTP_PORT'</span><span class="p">],</span>
+    <span class="ss">authentication: </span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SMTP_AUTHENTICATION'</span><span class="p">],</span>
+    <span class="ss">enable_starttls_auto: </span><span class="no">ENV</span><span class="p">[</span><span class="s1">'SMTP_ENABLE_STARTTLS_AUTO'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'true'</span>
+<span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>Note: “enable_starttls_auto” must be set to true to work with Amazon SES</p>
+
+<p>Generating the SMTP credentials is pretty straight forward. You can find the link below, and the <a href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/smtp-credentials.html">documentation</a> is pretty clear so I won’t repeat it here.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/images/amazon-smtp-ses.png" alt="smtp-settings.png" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><em>https://console.aws.amazon.com/ses/home?region=us-east-1#smtp-settings</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If you are familiar with spam filters, there is no avoiding the management of SPF records. We didn’t want to undo all the good work we had done over the years of optimizing these settings to ensure that we don’t end up in our clients’ spam filters, which is a much harder challenge than you would think! So we followed the recommendation by amazon to use a sub-domain that had a DNS entry similar to:</p>
+
+<p><code class="highlighter-rouge">v=spf1 include:amazonses.com -all</code></p>
+
+<p>Without going into too much detail, this adds amazon’s subnet to the list of allowed hosts that are allowed to send emails on your behalf. By using a subdomain, you also avoid the “mailed by amazonses.com” tag on email clients like gmail. To verify your DNS settings were set correctly you can use:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dig my-subdomain.my-domain.com TXT
+expected result:
+my-subdomain.example.com. 300 IN TXT "v=spf1 include:amazonses.com ~all"
+</code></pre></div></div>
+
+<p>You can also look directly at amazon’s SPF entry, and see what permissions you are providing by executing:
+dig amazonses.com TXT</p>
+
+<p>Amazon provides a helpful UI which you can use to make sure everything works, and the DNS settings are as expected which we recommend using before adding the complication of your own app.</p>
+
+<h2 id="the-quirks">The Quirks</h2>
+<p>After we had set everything up, for some reason our emails were being flagged as spam by gmail. We went around in circles, from comparing SPF records to checking our email headers to see if Amazon was somehow changing them. The problem turned out to be related to this requirement:</p>
+
+<blockquote>
+  <p>Before you can send an email using Amazon SES, you must verify each email address (or the domain of the email address) that you will use as a “From”, “Source”, “Sender”, or “Return-Path” address to prove that you own it. If your account is still in the Amazon SES sandbox, you also need to verify any email addresses that you send emails to except for email addresses provided by the Amazon SES mailbox simulator. You can verify an email address or domain by using the Amazon SES console or by using the Amazon SES API.</p>
+</blockquote>
+
+<p>The above is quite clear, but they leave something out. If you have verified an email address, but also whitelist a whole domain, the two verifications conflict. In our case, real_email@my-domain.com was a verified email address, but was going to spam. If we used a fake email address like fake@my-domain.com we would get through without any problems. This is because the verification of an email takes precedence over a domain level verification. In our case that meant we had a different rule set for real_email@my-domain.com. Which means that we had setup all our DNS, DKIM and SPF settings for our email to come from our subdomain, but the verified email was using the default settings of sending the email from amazonses.com.</p>
+
+<h2 id="the-fail-over">The Fail over</h2>
+
+<p>Now we have reliably used both services, switching between them is as simple as:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>heroku config:set 
+SMTP_ADDRESS=amazon.com
+SMTP_AUTHENTICATION=login 
+SMTP_DOMAIN=my-domain.com
+SMTP_PASSWORD=my-pass
+SMTP_PORT=587
+SMTP_ENABLE_STARTTLS_AUTO=true 
+-a myapp
+</code></pre></div></div>
+
+<p>We are now ready to quickly alternate between the two if there’s a problem or if we decide that one provider is too expensive. The reason we had not switched providers sooner was the assumption that the complexity was too high for the value. We assumed another API would have to be implemented, or the dependency on another library like aws-ses would be required. Under the pressure of trying to put out the fire that is Sengrid we were forced to look at other alternatives, and how to quickly get them up and running. In this scenario SMTP, although ugly, really shines through. Understanding SPF really wasn’t that bad and is well documented.</p>
+
+<h2 id="whats-next">What’s next?</h2>
+<p>From the above you may have guessed we are currently using Amazon SES on some of our Rails apps but not all. We want to get to a place where one Rails app can use multiple providers, and load balance the email traffic across them all. This has some challenges including being able to swap provider without rebooting the app, therefore avoiding the use of “Rails.application.configure”. We also need to come up with a way of weighting the providers based on known performance, which may be coming in a later blog post.</p>
+
+      </div>
+    </div>
+  </section>
+</article>
+
+    </main>
+
+    <footer class="footer">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-5">
+        <div class="logo">
+          Abe Petrillo
+        </div>
+
+        <h4>
+          Developer, Gamer, Rambler
+        </h4>
+
+        <div class="mt-3">
+          Follow on Twitter: <strong><a href="https://twitter.com/abepetrillo">@abepetrillo</strong></a>
+        </div>
+
+        <div class="mt-6 is-size-7">
+          Website content licensed <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>
+        </div>
+
+      </div>
+      <div class="column is-4">
+        <h4>
+          Other <strong>Resources</strong>
+        </h4>
+
+        <div class="mt-5">
+          <a href="https://wikipedia.org">Wikipedia</a><br/>
+          <a href="https://archive.org/web/">Wayback Machine</a>
+        </div>
+      </div>
+      <div class="column is-3">
+        <h4>
+          <strong>Share</strong> on Social Media
+        </h4>
+
+        <div class="mt-5">
+          <a href="https://twitter.com/intent/tweet?url=&via=abepetrillo&text=Check%20out%20this%20awesome%20new%20site%20built%20with%20Bridgetown%20and%20Ruby%21&hashtags=SpinUpBridgetown%2CJamstack" class="button is-info">
+            <span class="icon"> <i class="fa fa-twitter is-size-5"></i> </span>
+            <span class="has-text-weight-bold">Tweet</span>
+          </a>
+        </div>
+
+        <div class="mt-6">
+          <a href="/feed.xml" class="button is-danger is-small">
+            <span class="icon"> <i class="fa fa-rss"></i> </span>
+            <span class="has-text-weight-bold">News Feed</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
